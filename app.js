@@ -7,7 +7,7 @@ const app = express()
 
 // Creating the server
 var server = require('http').createServer(app);
-
+var PORT = process.env.PORT || 8000
 // In order to extracting a variable from incoming request
 const bodyParser = require('body-parser')
 
@@ -47,7 +47,9 @@ app.use('/leaderboard', leaderBoardRest)
 app.use('/score', scoreRest)
 
 // Listening to the server at port 8000
-var server = server.listen(8000, function(){
+
+
+var server = server.listen(PORT, function(){
   console.log("Listening to the server on 8000")
 })
 
