@@ -129,4 +129,38 @@ router.get('/profile/:userguid',(req,res,next) => {
      })   
 })
 
+router.get('/delete/:userguid',(req,res,next) => {
+    User.deleteOne({user_id:req.params.userguid}).then((result)=>{ 
+        const userID = req.params.userguid // Getting a value from user's request
+    res.json({
+        message: result.display_name+ "has been deleted.",
+    
+    })
+    }).catch((err)=> { // If searching user is not exist display the error
+        
+        res.json({
+            message: 'User not exist',
+            error: err.message
+        })
+     })   
+   
+})
+
+router.get('/deleteAll',(req,res,next) => {
+    User.remove({}).then((result)=>{ 
+        
+    res.json({
+        message: 'All users has been deleted'
+    
+    })
+    }).catch((err)=> { // If searching user is not exist display the error
+        
+        res.json({
+            message: 'User not exist',
+            error: err.message
+        })
+     })   
+   
+})
+
 module.exports = router
