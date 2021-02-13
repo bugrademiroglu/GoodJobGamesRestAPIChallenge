@@ -81,7 +81,7 @@ var testUserCreate = {
     it('displays the learderboard by default country code', function(done) { 
       request(app) .get('/leaderboard')  .end(function(err, res) { 
         expect(res.statusCode).to.equal(200); 
-        expect(res.body).to.be.have.key('result')
+        expect(res.body).to.be.have.key('sortedLeaderBoard')
         done()
       }); 
     }); 

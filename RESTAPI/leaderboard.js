@@ -20,11 +20,11 @@ function rankUser(arr) {
 router.get('/',(req,res,next) => {
 
     User.find({},{_id:0,user_id:0,__v:0}).sort({points:-1}).then((result)=>{ // Getting all the user's from database according to their ranks and points
-
+        sortedLeaderBoard = rankUser(result) // Ranking user according to their scores
         // Displaying leaderBoard as a json
         if (result.length !==  0) {
             res.json({
-                result
+                sortedLeaderBoard
              })
         }
         else {
