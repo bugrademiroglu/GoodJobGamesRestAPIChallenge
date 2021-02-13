@@ -13,8 +13,8 @@ const { Mongoose } = require('mongoose');
 
 // Route which creates random user according to the given value
 router.post('/create/:value',(req,res,next) => {
-
- // Taking the number of creating user
+ if (parseInt(req.params.value) < 1200) {
+     // Taking the number of creating user
  let createNumOfUser = parseInt(req.params.value)
  let userArray = [] // Creating an array in order to store User elements
  for (let i = 0; i < createNumOfUser; i++) { // Repeating the steps number of given value times
@@ -69,7 +69,16 @@ router.post('/create/:value',(req,res,next) => {
           } 
             )
         }}
-        run() // Running the function               
+        run() // Running the function   
+
+ }
+ else {
+     res.json({
+         message: 'Please enter a value less than 1200 because heroku cannot response :('
+     })
+ }
+
+             
 })
 
 // Route which is handle with user create request
@@ -129,7 +138,7 @@ router.get('/profile/:userguid',(req,res,next) => {
      })   
 })
 
-router.get('/delete/:userguid',(req,res,next) => {
+router.post('/delete/:userguid',(req,res,next) => {
     User.deleteOne({user_id:req.params.userguid}).then((result)=>{ 
         const userID = req.params.userguid // Getting a value from user's request
     res.json({
@@ -146,7 +155,7 @@ router.get('/delete/:userguid',(req,res,next) => {
    
 })
 
-router.get('/deleteAll',(req,res,next) => {
+router.post('/deleteAll',(req,res,next) => {
     User.remove({}).then((result)=>{ 
         
     res.json({
