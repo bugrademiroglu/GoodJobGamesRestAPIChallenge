@@ -103,3 +103,9 @@ If you want to map the port and acces on your local machine:
 ```bash
 docker run -rm -i -t -p 8080:8000 <Your tag name>(This path run the code on your)
 ```
+# Test
+In order to test the project, type the following command on your terminal
+```bash
+npm test
+
+```
