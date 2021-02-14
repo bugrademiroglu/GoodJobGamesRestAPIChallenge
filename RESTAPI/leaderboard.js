@@ -9,16 +9,19 @@ const User = require('../Models/User')
 
 // This method rank users
 function rankUser(arr) {
+    
     arr.map(function(e, i){ // Applying mapping in order to apply the same process on all the elements in the array        
         e.rank = (i + 1); // Starting top of the sorted array and increase the rank
+        console.log('E: ',e)
       return e;
     });
+    console.log('ARR: ',arr)
     return arr // Return the array
 }
 
 // That route display the current leaderboard
 router.get('/',(req,res,next) => {
-
+    let sortedLeaderBoard = [] // Stores the ranked users
     User.find({},{_id:0,user_id:0,__v:0}).sort({points:-1}).then((result)=>{ // Getting all the user's from database according to their ranks and points
         sortedLeaderBoard = rankUser(result) // Ranking user according to their scores
        

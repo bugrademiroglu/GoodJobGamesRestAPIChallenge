@@ -11,6 +11,25 @@ var async = require('async');
 const User = require('../Models/User');
 const { Mongoose } = require('mongoose');
 
+// This method rank users
+function rankUser(arr) {
+    arr.map(function(e, i){ // Applying mapping in order to apply the same process on all the elements in the array        
+        e.rank = (i + 1); // Starting top of the sorted array and increase the rank
+      return e;
+    });
+    return arr // Return the array
+}
+
+// Updating user's rank on database
+function updateUserRank(arr) {
+    arr.forEach(element => {
+        User.updateOne({display_name:element.display_name}, {$set:{rank:element.rank}}, function(err, result) { // Updating the user's rank according to the his/her user's score
+        if (err)
+            console.log('error: ',err)
+    })
+    })
+}
+
 // Route which creates random user according to the given value
 router.post('/create/:value',(req,res,next) => {
  if (parseInt(req.params.value) < 1200) {
@@ -57,6 +76,23 @@ router.post('/create/:value',(req,res,next) => {
             })
   
         } finally {
+           
+            User.find({},{_id:0,user_id:0,__v:0}).sort({points:-1}).then((result)=>{ // Getting all the user's from database according to their ranks and points
+        sortedLeaderBoard = rankUser(result) // Ranking user according to their scores
+        updateUserRank(sortedLeaderBoard)
+       
+        // Displaying leaderBoard as a json
+        if (result.length !==  0) {
+            res.json(
+                sortedLeaderBoard // Display the current leaderboard without country code
+             )
+        }
+        else {
+            res.json({
+                message: 'Currently, there is no user' // If there is no user in the database then display a message to user
+             })
+        }
+    })  
             res.json({
                 message: userArray.length + ' Users created with their random scores'
               
