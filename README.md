@@ -76,7 +76,7 @@ docker-compose up
 ```
 ###### View
 ```bash
-http://localhost:5000
+http://localhost:8000/leaderboard
 ```
 ###### Stop
 ```bash
@@ -92,5 +92,5 @@ docker run --rm -i -t <Your tag name> (This path run the code on your)
 ```
 If you want to map the port and acces on your local machine:
 ```bash
-docker run -rm -i -t -p 8080:5000 <Your tag name>(This path run the code on your)
+docker run -rm -i -t -p 8080:8000 <Your tag name>(This path run the code on your)
 ```

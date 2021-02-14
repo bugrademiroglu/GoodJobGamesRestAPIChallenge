@@ -1,0 +1,19 @@
+- [x] Create a nodejs server and import required libraries
+- [x] Import express
+- [x] Create a connection with database (MongoDB)
+- [x] Check the connection with the server
+- [x] Create required folders (Config - Models - RESTAPI - Test)
+- [x] Create User model
+- [x] Create and implement /user/create route (POST)
+- [x] Create and implement /user/profile/:userguid router (GET)
+- [x] Create and implement /score/submit route (POST)
+- [x] Create and implement /leaderboard route (GET)
+- [x] Create and implement /leaderboard/countryCode route (GET)
+- [x] Create and implement /user/create/:value route to implement random users (POST)
+- [x] Create and implement /user/delete/:userguid route to delete specific user (POST)
+- [x] Create and implement /user/deleteAll route to delete all users (POST)
+- [x] Install mocha, chai and supertest
+- [x] Create a test script and import required libraries
+- [x] Implement test methods for every route
+- [x] Create a docker file for docker image
+- [x] Create a docker compose
