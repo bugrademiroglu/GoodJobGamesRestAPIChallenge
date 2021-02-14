@@ -65,7 +65,7 @@ To get the project running locally:
 ###### On terminal:
 Clone this repo
  ```bash
-git clone https://github.com/bugrademiroglu/GoodJobGamesChallengeRestAPI.git
+git clone https://github.com/bugrademiroglu/GoodJobGamesRestAPIChallenge.git
 ```
 install all required dependencies
 ```bash 
