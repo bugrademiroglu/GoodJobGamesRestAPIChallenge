@@ -74,13 +74,10 @@ router.post('/create/:value',(req,res,next) => {
             res.json({
              message: userArray.length + ' Users created with their random scores'
             })
-  
-        } finally {
-           
-            User.find({},{_id:0,user_id:0,__v:0}).sort({points:-1}).then((result)=>{ // Getting all the user's from database according to their ranks and points
+        } finally {     
+        User.find({},{_id:0,user_id:0,__v:0}).sort({points:-1}).then((result)=>{ // Getting all the user's from database according to their ranks and points
         sortedLeaderBoard = rankUser(result) // Ranking user according to their scores
-        updateUserRank(sortedLeaderBoard)
-       
+        updateUserRank(sortedLeaderBoard) // Updating user's rank
         // Displaying leaderBoard as a json
         if (result.length !==  0) {
             res.json(

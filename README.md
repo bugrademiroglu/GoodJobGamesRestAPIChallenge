@@ -65,12 +65,20 @@ To get the project running locally:
 ###### On terminal:
 Clone this repo
  ```bash
-git clone ------------
-npm install to install all required dependencies
-npm start to start the local server
+git clone https://github.com/bugrademiroglu/GoodJobGamesChallengeRestAPI.git
 ```
+install all required dependencies
+```bash 
+npm install 
+```
+start the local server
+```bash 
+npm start 
+``` 
+
 Alternately, to quickly try out this repo in the cloud, [You can access to project on heroku!](https://bugrarestapi.herokuapp.com/leaderboard)
 ###### On Docker compose: 
+Type the following command on your terminal
 ```bash
 docker-compose up
 ```
@@ -83,6 +91,7 @@ http://localhost:8000/leaderboard
 docker-compose stop
 ```
 ###### To running with Docker file on your host: 
+Type the following command on your terminal
 ```bash
 docker build --tag <Enter a tag name> .
 ```
