@@ -81,7 +81,7 @@ var testUserCreate = {
     it('displays the learderboard by default country code', function(done) { 
       request(app) .get('/leaderboard')  .end(function(err, res) { 
         expect(res.statusCode).to.equal(200); 
-        expect(res.body).to.be.have.key('sortedLeaderBoard')
+        expect(res.body[0]).to.not.equal(null)
         done()
       }); 
     }); 
@@ -91,7 +91,7 @@ var testUserCreate = {
     it('displays the learderboard with DE ISO CODE', function(done) { 
       request(app) .get('/leaderboard/de')  .end(function(err, res) { 
         expect(res.statusCode).to.equal(200); 
-        expect(res.body).to.be.have.key('sortedLeaderBoard')
+        expect(res.body[0].country).to.equal('de')
        
         done()
     
@@ -103,7 +103,7 @@ var testUserCreate = {
     it('displays the learderboard with US ISO CODE', function(done) { 
       request(app) .get('/leaderboard/us')  .end(function(err, res) { 
         expect(res.statusCode).to.equal(200); 
-        expect(res.body).to.be.have.key('sortedLeaderBoard')
+        expect(res.body[0].country).to.equal('us')
         done()
       }); 
     }); 
@@ -113,10 +113,33 @@ var testUserCreate = {
     it('displays the learderboard with TR ISO CODE', function(done) { 
       request(app) .get('/leaderboard/tr')  .end(function(err, res) { 
         expect(res.statusCode).to.equal(200); 
-        expect(res.body).to.be.have.key('sortedLeaderBoard')
+        expect(res.body[0].country).to.equal('tr')
         done()
       }); 
     }); 
   }); 
+
+// It test to Deleting current requested user
+describe('## Testing to delete requested user', function() { 
+  it('deletes requested user', function(done) { 
+    request(app) .post('/user/delete/testUser3')  .end(function(err, res) { 
+      expect(res.statusCode).to.equal(200); 
+      expect(res.body.message).to.equal('user has been deleted.'); 
+      done()
+    }); 
+  }); 
+}); 
+
+// It test to Deleting all users
+describe('## Testing to delete all users', function() { 
+  it('deletes requested user', function(done) { 
+    request(app) .post('/user/deleteAll')  .end(function(err, res) { 
+      expect(res.statusCode).to.equal(200); 
+      expect(res.body.message).to.equal('All users has been deleted'); 
+      done()
+    }); 
+  }); 
+}); 
+
 
 

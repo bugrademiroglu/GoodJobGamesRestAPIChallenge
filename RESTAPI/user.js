@@ -142,7 +142,7 @@ router.post('/delete/:userguid',(req,res,next) => {
     User.deleteOne({user_id:req.params.userguid}).then((result)=>{ 
         const userID = req.params.userguid // Getting a value from user's request
     res.json({
-        message: result.display_name+ "has been deleted.",
+        message: "user has been deleted.",
     
     })
     }).catch((err)=> { // If searching user is not exist display the error
