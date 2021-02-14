@@ -12,10 +12,8 @@ function rankUser(arr) {
     
     arr.map(function(e, i){ // Applying mapping in order to apply the same process on all the elements in the array        
         e.rank = (i + 1); // Starting top of the sorted array and increase the rank
-        console.log('E: ',e)
       return e;
     });
-    console.log('ARR: ',arr)
     return arr // Return the array
 }
 
