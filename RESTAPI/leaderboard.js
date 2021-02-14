@@ -21,11 +21,12 @@ router.get('/',(req,res,next) => {
 
     User.find({},{_id:0,user_id:0,__v:0}).sort({points:-1}).then((result)=>{ // Getting all the user's from database according to their ranks and points
         sortedLeaderBoard = rankUser(result) // Ranking user according to their scores
+       
         // Displaying leaderBoard as a json
         if (result.length !==  0) {
-            res.json({
-                sortedLeaderBoard
-             })
+            res.json(
+                sortedLeaderBoard // Display the current leaderboard without country code
+             )
         }
         else {
             res.json({
@@ -42,11 +43,11 @@ router.get('/:country_iso_code',(req,res,next) => {
 
     User.find({country:countryISO},{_id:0,user_id:0,__v:0}).sort({points:-1}).then((result)=>{
         sortedLeaderBoard = rankUser(result) // Ranking user according to their scores
-
+       
         if (sortedLeaderBoard.length !==  0) {
-            res.json({
+            res.json(
                 sortedLeaderBoard // Display the current leaderboard with relevant country code
-         })
+         )
         }
         else {
             res.json({
